@@ -1,21 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView  } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import {Provider} from 'overmind-react';
+import { overmind } from "./src/overmind/setup"
+import Component from './src/component';
+
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+  return (<Provider value={overmind}>
+      <StatusBar style="dark" />
+      <SafeAreaView>
+        <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ backgroundColor:Colors.lighter }}>
+          <Component />
+        </ScrollView>
+      </SafeAreaView> 
+    </Provider> 
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
